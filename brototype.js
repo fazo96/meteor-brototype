@@ -1,7 +1,5 @@
-'use strict';
-
 // Bromise... it's stronger than a Promise
-function Bromise(object, method, args) {
+Bromise = function(object, method, args) {
     this.object = object;
     this.method = method;
     this.args = args.length > 1 ? args.slice(1) : [];
@@ -34,7 +32,7 @@ Bromise.brototype = Bromise.prototype = {
     }
 };
 
-function Bro(obj) {
+Bro = function(obj) {
     if (this instanceof Bro) {
         this.obj = obj;
     } else {
@@ -125,28 +123,3 @@ Bro.brototype = Bro.prototype = {
         return new Bromise(this.obj, method, arguments);
     }
 };
-
-try {
-    if (exports) {
-        exports.Bro = Bro;
-        return;
-    }
-} catch(e) {}
-try {
-    if (module) {
-        module.exports = Bro;
-        return;
-    }
-} catch(e) {}
-try {
-    if (require) {
-        define([], function() {return Bro;});
-        return;
-    }
-} catch(e) {}
-try {
-    if (window) {
-        window.Bro = Bro;
-        return;
-    }
-} catch(e) {}
